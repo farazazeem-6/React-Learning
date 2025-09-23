@@ -1,0 +1,11 @@
+.error {
+  color: red;
+  font-size: 12px;
+  font-weight: 550;
+}
+.inp-error {
+  border: 1px solid red;
+}
+.inp-error:focus {
+  outline: 1px solid red;
+}

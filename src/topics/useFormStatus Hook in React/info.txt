@@ -1,0 +1,47 @@
+UseFormStatus() Hook:
+
+UseFormStatus is a hook that comes in latest versions of React.It is very useful in forms submitions.For example if we have a form and when we click the submit button then this form is submitted then there is a comon feature in today webistes so that when we click the button and form started submitting so until the form is not submited ,the button will disables or show some other text like submitting ,during this time interval.This is the main use of UseFormStatus hook.
+
+
+App.jsx Code:
+
+
+import React from "react";
+import Component from "./topics/useFormStatus Hook in React/Comp";
+
+
+function App() {
+  
+  async function HandleForm() {
+    await new Promise((res, rej) => {
+      setTimeout(res, 2000);
+    });
+    console.log("Submit");
+  }
+
+
+  return (
+    <div>
+      <form action={HandleForm}>
+        <Component />
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+here we made a function which return a reolove promise after 2 second delay.We pass this function in the action attribute of the form so that until this function is not called,the submission should not finish.Now we made a component (which is in another file) and made the useFormStatus hook .
+const {pending}=useFormStatus();
+
+this is how we made this hook.We need to made this in that form inputs.Now when we run the code,this hook will find the closed form from this inputs .Then this will return a true or false state according to that form submission.
+
+ <button disabled={pending}>{pending ? "Submitting" : "Submit"}</button>
+
+ so we now we have the state of that form that is it completed or nor.So now we can use this staus to do anything like here we use disabled in button until the state is false and then also change the text of the button according to the state.Like until the state is true(mean form is not submited),then button text will be submitting and when state become true then button text will be submit.
+
+
+
+This is how we can use this useFormStatus hook to amazing things with our form.

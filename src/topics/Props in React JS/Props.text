@@ -1,0 +1,150 @@
+Props:
+
+Props are nothing but just same like function parameters
+For example in simple JavaScript we made a function and it takes two parameters a & b
+Now when we will call it then we will pass the value of that parameters.
+Props are also same to that 
+In App.jsx we always call the components,so when we will call the component in App.jsx then here we will passes the props because we know that we pass values while calling the function
+Same logic is here also
+We made a component then we call it in App.jsx so now when we will call it then we can pass it props.
+So now as we have pass it props ,so now we can use that props data in that actual component in which we call it 
+For example we made a sum function 
+
+function sum(a,b){
+    console.log(a+b)
+}
+
+sum(10,20) //calling the function
+
+So as here we pass the parameters and we are just consoling the result of these parameters in that actual functiom,The logic of props are also same
+We pass props while calling and now we can do anything with that props in that component(log,calculate etc).
+
+
+
+A simple example of props:
+
+
+// ProfileCard.jsx (Child)
+function ProfileCard({ user }) {
+  return (
+    <div style={{ border: "1px solid gray", margin: "10px", padding: "10px" }}>
+      <h2>{user.name}</h2>
+      <p>Age: {user.age}</p>
+      <p>City: {user.city}</p>
+    </div>
+  );
+}
+export default ProfileCard;
+
+// App.jsx (Parent)
+import ProfileCard from "./ProfileCard";
+
+function App() {
+  const user1 = { name: "Ali", age: 22, city: "Karachi" };
+  const user2 = { name: "Sara", age: 25, city: "Lahore" };
+
+  return (
+    <div>
+      <ProfileCard user={user1} />
+      <ProfileCard user={user2} />
+    </div>
+  );
+}
+export default App;
+
+
+
+THE CODE OF APP.JSX :
+
+++++++++++++++++++++++++++++++++++++++++++
+
+
+
+import React, { use, useState } from "react";
+import Default from "./topics/Props in React JS/Default";
+// import Props from "./topics/Props in React JS/Props";
+// import College from "./topics/Props in React JS/College";
+// import User from "./topics/Props in React JS/User";
+
+// function App() {
+//   let obj1 = {
+//     name: "Faraz Azeem",
+//     age: 22,
+//     email: "faraz.test@gmail.com",
+//   };
+//   let obj2 = {
+//     name: "Rehan Azeem",
+//     age: 18,
+//     email: "rehan.test@gmail.com",
+//   };
+//   return (
+//     <div>
+//       <Props user={obj1} />
+//       <Props user={obj2} />
+
+//     </div>
+//   );
+// }
+
+
+
+++++++++++++++++++++++++++++++
+
+
+
+// function App() {
+//   // let arr1=['babar','kohli','smith','root'];
+//   // let arr2=['bumrah','shaheed','boult','starc'];
+
+//   let [student, SetStudent] = useState("Rehan");
+//   return (
+//     <>
+//       {/* <College arr={arr1} />
+//     <College arr={arr2} /> */}
+
+//       {student && <College name={student} />}
+//       <button onClick={() => SetStudent("Faraz")}>Update Name</button>
+//     </>
+//   );
+// }
+
+
+++++++++++++++++++++++++++++++++++++++
+
+
+function App() {
+  return (
+    <>
+      <Default name={'Faraz'} color="red" />
+      <Default />
+      <Default name={'Rehan'} color="pink" />
+
+      <Default>
+        <h1>Hello</h1>
+      </Default>
+    </>
+  );
+}
+
+export default App;
+
+
+
+++++++++++++++++++++++++++++++++++++++
+
+import React from "react";
+import Default from "./topics/Props in React JS/Default";
+
+function App() {
+  let name='xyz';
+  let color='pink'
+  return (
+    <>
+    <Default color={color} >
+      <h1>Hello {name}</h1>
+      </Default>
+    </>
+  );
+}
+
+export default App;

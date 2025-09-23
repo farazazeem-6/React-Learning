@@ -1,0 +1,21 @@
+🧩 <>...</> vs <Fragment>...</Fragment> in React
+
+
+Syntax   	 Description    	   Can Accept Props?      	Use Case
+<></>....        Shorthand for React.Fragment..... 	❌ No props allowed.... 	Quick grouping of elements
+<Fragment></Fragment>.... 	Full syntax	✅.....  Can accept key and other props.... 	Mapping lists, DevTools labeling
+
+
+
+
+🔍 Why This Matters
+Both are used to group multiple elements without adding extra DOM nodes.
+But only <Fragment> lets you pass a key—which is essential when rendering lists like:
+
+
+{items.map(item => (
+  <Fragment key={item.id}>
+    <p>{item.name}</p>
+    <p>{item.price}</p>
+  </Fragment>
+))}

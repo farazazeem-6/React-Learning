@@ -1,0 +1,113 @@
+1. What is useEffect?
+
+Think of useEffect as a “side-effect manager” in React.
+It lets you run extra code in your component after React has updated the screen.
+
+Real-life example:
+
+For example we made a counter program using useState().Suppose we made a simple function one or more and call it in that component.Now when when we change the state ,these function will run that time.Like we made a button for increamenting counter using useState().Now when when the state will change,these funtions will automatically call again and again that time.That's because as we know that when we use the useState and when the state is change then the UI is render automatically so when when the Ui will render then these functions will call again and again 
+
+Here the useEffect hook comes in to the picture.The useEffect accept an arrow function and an array for dependencies.For example:
+
+ useEffect(() => {
+    callback1();
+  }, [counter]);
+
+  here in the arrow function we can call all the simple functions that were calling automatically again and again and in this bottom array we can pass the dependencies mean that we can pass here that that state that we want that when this state will change then only this function will run.Like the function we gave in the arrow function will run only one time if we gave dependencies array empty.If we gave any state variable here like here we are changing the counter so if we pass the counter in the dependencies of useEffect() then this function that is given in the body of arrow function will only run when that give state dependency (counter) will change.
+
+  We can use more then one useEffect in our component and pass more then one parameter in the dependencies array of the useEffect.
+
+
+useEffect(() => {
+    callback2();
+  }, [data]);
+
+  here we made another useEffect and pass a diffirent function and diffirent dependencies in this so that now when this given dependency will change then the given function in array function of useEffect will run.
+
+  We can also use it for props.Like as we know that we pass the data from one component to other component.So we can also pass the props in the dependencies array of useEffect so that when this this particular props will change then this given function will run ,otherwise not.
+
+
+useEffect(() => {
+    callback3();
+  }, [props1,props2]);
+
+
+
+SUMMARY: ✅ So useEffect helps you control when a function runs — not just blindly on every render.
+
+
+
+
+
+import React, { useState } from "react";
+import Comp from "./topics/use of useEffect hook/Comp";
+import PropsUseEffect from "./topics/use of useEffect hook/Props";
+
+function App() {
+  let [count, setCount] = useState(0);
+  let [data, setData] = useState(0);
+  return (
+    <div>
+      <PropsUseEffect count={count} data={data} />
+      <button onClick={() => setCount(count + 1)}>Count</button>
+      <button onClick={() => setData(data + 1)}>Data</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+IMPORTANT:
+
+LIEFCYCLES IN REACT JS:
+1:MOUNTING
+2:UPDATING
+3:UNMOUNTING
+
+
+
+1. React Component Lifecycle
+
+React components go through three main phases in their lifecycle:
+
++++
+Phase	Meaning (Simple)	Example (Real Life)
+Mount	When a component appears on the screen for the first time.	(When a modal pops up for the first time).
++++
+
+Update	When something inside the component changes (state, props, etc.), React re-renders it. (When a search input updates live results as you type).
++++
+
+Unmount	When a component is removed from the screen.	(When you close a modal or navigate to a different page).
+    
+
+
+import React, { useState } from "react";
+import LifeCycle from "./topics/use of useEffect hook/LifeCycle";
+
+function App() {
+  let [count, setCount] = useState(0);
+  let [data, setData] = useState(0);
+  let [display, setDisplay] = useState(true);
+  return (
+    <div>
+      {
+        display?<LifeCycle count={count} data={data} />:null
+      }
+      
+      <button onClick={() => setCount(count + 1)}>Count</button>
+      <button onClick={() => setData(data + 1)}>Data</button>
+      <button onClick={()=>setDisplay(!display)}>Toggle</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+

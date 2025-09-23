@@ -1,0 +1,67 @@
+Styled Component CSS:
+
+Styled Component CSS is just another way of gaving styling to our code.It helps more when we want to gave style to a particular thing like button,h1 ,p etc.
+
+We can just create it one time and then we can use it again and again.For example we want to make 4 buttons that have same style but just the difference of text,so we can gave them styled component css.
+Here a question comes in mind that why we cannot use external css by gaving same class or id names to that thing where we want to use again and again.OK we accept that external css have some issues like it can also effect other components also.Ok Ok.But there is another way of gaving css called module css and it also dont effect other components as it is only for a particular component.Agree but what if we want to gave css in that component not in another external file.What if we want to gave css dynamicallay?
+
+
+Here the styled component css come into picture.It is the best way to gave css in that component not on another external file and if we want to use that thing more than one time.
+
+How to Use Styled Component CSS:
+
+1--First we need to install the styled component bundle from its documentation 'styled component'.But it need to install only one time.
+
+2--Second step isto import the styled component in that component where the target is.
+3--Third step isto make a variable and gave it a function object like this :
+
+const HeadingCSS=({
+
+})
+
+Another step to write the CSS is using back ticks like this:
+
+const HeadingCSS=`
+
+`
+
+4:Fourth step is to set the tag on which we want to add this css.For example we want that we have five buttons and we want to use the same style on all of them.So we will set that tag now like this:
+
+const HeadingCSS=styled.button({
+
+}) 
+or 
+const HeadingCSS=styled.button`
+
+`
+
+5:Now as we have set the tag now we can write our css in this variable like this:
+
+const HeadingCSS=styled.button({
+    color:'red',
+    display:'flex',
+    fontSize:'2rem',
+    ...etc
+})
+
+or we are using back ticks then write css like this 
+
+const HeadingCSS=styled.button`
+color:red;
+font-size:2rem;
+display:flex;
+...etc
+`
+
+NOW HOW TO USE THIS CSS IN THE TAG WHERE WE WANT:
+
+We wil simply made a tag with the name of that variable where we write that css.For example:
+
+<HeadingCSS> Submit Now </HeadingCSS>
+
+Now this will work as button because we have styled this variable for button tag and we can use it again and again in this component like this.
+
+<HeadingCSS> Submit Now 1 </HeadingCSS>
+<HeadingCSS> Submit Now 2 </HeadingCSS>
+<HeadingCSS> Submit Now 3 </HeadingCSS>
+<HeadingCSS> Submit Now 4 </HeadingCSS>

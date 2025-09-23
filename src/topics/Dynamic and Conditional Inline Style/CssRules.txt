@@ -1,0 +1,75 @@
+// import React, { useState } from "react";
+// import ProfileCard from "./topics/Dynamic and Conditional Inline Style/Profile";
+
+// function App() {
+
+//   return (
+//     <div>
+//       <h1>Dynamic CSS in React JS</h1>      
+//       <div>
+//         <ProfileCard />
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+// App.jsx
+import React, { useState } from "react";
+import ProfileCard from "./topics/Dynamic and Conditional Inline Style/Profile";
+
+
+const App = () => {
+  const [theme, setTheme] = useState({
+    width: "200px",
+    height: "auto",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    padding: "16px",
+    textAlign: "center",
+    fontFamily: "Arial, sans-serif",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    backgroundColor: "white",
+    color: "black",
+  });
+
+  const updateTheme = (bgColor, textColor) => {
+    setTheme((prev) => ({
+      ...prev,
+      backgroundColor: bgColor,
+      color: textColor,
+    }));
+  };
+  const [grid,setGrid]=useState(false)
+
+  return (
+    <div>
+      <button onClick={() => updateTheme("grey", "red")}>Change Theme</button>
+      <button onClick={() => updateTheme("white", "black")}>Default Theme</button>
+      <button onClick={()=>setGrid(!grid)}>Grid</button>
+
+      <div style={{display:grid?'flex':'block',margin:'20px'}}>
+
+      <ProfileCard 
+        name="John Doe"
+        role="Software Engineer"
+        image="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=580&auto=format&fit=crop"
+        theme={theme}
+      />
+      <ProfileCard 
+        name="Ben Stokes"
+        role="Crickter"
+        image="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSFnv66KAOsxfdLEwQ2GiuuwAHC9r9V4sd2Y2lbaeMi20OFRDowFnh5JkjbJUZb3CrJGol93XpSzEbkBY0"
+        theme={theme}
+      />
+
+    </div>
+     </div>
+  );
+};
+
+export default App;

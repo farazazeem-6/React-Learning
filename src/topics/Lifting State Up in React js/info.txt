@@ -1,0 +1,164 @@
+1. What Does "State" Mean in React?
+
+State is like a variable that React watches.
+When state changes, React automatically updates the UI.
+Example:
+
+const [count, setCount] = useState(0);
+
+Here, count is state.
+
+2. Problem: Two Components Need the Same Data
+
+Imagine you have two child components, and both need to share the same data.
+
+Example:
+
+TemperatureInput (enter temperature)
+
+BoilingVerdict (check if water boils)
+
+If each component has its own state, they cannot directly talk to each other. ❌
+This causes data mismatch or bugs.
+
+3. Solution: Lifting State Up
+
+Instead of keeping state separately in each child,
+we move the state to their common parent and share it through props.
+
+This is called "Lifting State Up".
+
+💡 Think of it like this:
+
+Two kids (child components) can’t share toys directly.
+
+Parent holds the toys (state) and gives each kid what they need (props).
+
+4. Example Without Lifting State
+function ChildA() {
+  const [text, setText] = useState(""); // ❌ State is stuck here
+  return (
+    <div>
+      <input onChange={(e) => setText(e.target.value)} placeholder="Type here..." />
+      <p>Text: {text}</p>
+    </div>
+  );
+}
+
+function ChildB() {
+  return <p>I want to show the same text here, but I can't!</p>;
+}
+
+function App() {
+  return (
+    <div>
+      <ChildA />
+      <ChildB />
+    </div>
+  );
+}
+
+Problem:
+ChildB has no way to access text inside ChildA. 😢
+
+
+
+5. Fix by Lifting State Up:
+We move the text state to the parent (App) and pass it down via props.
+
+import React, { useState } from "react";
+
+function ChildA({ text, setText }) {
+  return (
+    <div>
+      <input 
+        value={text}
+        onChange={(e) => setText(e.target.value)} 
+        placeholder="Type here..." 
+      />
+      <p>Text: {text}</p>
+    </div>
+  );
+}
+
+function ChildB({ text }) {
+  return <p>Child B also sees: {text}</p>;
+}
+
+function App() {
+  const [text, setText] = useState(""); // ✅ State is lifted here
+
+  return (
+    <div>
+      <ChildA text={text} setText={setText} />
+      <ChildB text={text} />
+    </div>
+  );
+}
+
+export default App;
+
+6. What Happened Here
+
+App is now the parent that owns the state (text).
+ChildA updates the state using setText.
+ChildB receives the same state through props and displays it.
+Now both components stay in sync automatically. ✅
+
+7. Why Lifting State Up is Important
+Without Lifting	With Lifting
+Each component has separate state → hard to sync. ❌	Single source of truth in parent → easy to sync. ✅
+Bugs and mismatch possible	Data always consistent
+Harder to debug	Easier to manage
+
+
+Real-Life Analogy:
+Imagine two kids with separate jars of candies:
+If one kid eats a candy, the other doesn’t know.
+If parent holds one jar and gives candies to both kids, both stay aware of the exact count.
+
+Summary
+Lifting State Up = Moving state to the closest common parent so multiple child components can share and sync data.
+Children communicate through props, not directly with each other.
+This keeps data consistent, predictable, and bug-free.
+
+
+
+In super simple wording:
+
+Lifting state up means moving the state to a common parent component so two (or more) child components can share and stay connected to the same data.
+
+
+Example in Real Life:
+Two kids want to play the same video game 🎮.
+If each kid has their own separate console, their game progress won't match ❌.
+But if the parent keeps one console and both kids play on it,
+they share the exact same game data ✅.
+
+
+React Version:
+If two components need the same data,
+put that data (state) in their parent,
+and pass it down using props.
+
+This way, both components stay synced automatically. ✅
+
+
+
+
+
+import React, { useState } from "react";
+import ChildA from "./topics/Lifting State Up in React js/ChildA";
+import ChildB from "./topics/Lifting State Up in React js/ChildB";
+
+function App() {
+  const [name, setName] = useState("");
+  return (
+    <div>
+      <ChildA setName={setName}/>
+      <ChildB name={name} />
+    </div>
+  );
+}
+
+export default App;

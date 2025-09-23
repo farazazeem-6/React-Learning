@@ -1,0 +1,48 @@
+What is Context API:
+
+Suppose that we have a parent which have 3 childs.These three child also have one one child.Got it.So imagine that we need to send a data from parent to the child of it's child,like the parent have childs and we have to send data to child of one of these three child.So what we can do here? We know that we can pass data thorugh props so now what we will do ?We will send data from parent to it's child and then that child will pass data to it's child where we wanted to reach our data.So what is the problem here?As we ask that we want to send data from parent to child of the child so now as we first send data from parent to its child and then that child send data to its child so here passing data first to the child where we don't need data but just pass data because we want to pass the data from this child to its child.Now suppose if we have parent and it have childs and its childs have some childs and these childs also have some childs so now if we want to send data to last child from the parent then we will need to pass data down by down in childs and then it will reach in the last child.This thing become very tricky and also make the code long and bad.
+
+
+Here the Context API come into picture.Using Context API we can directly send data from parent to last child and don't need to pass data down by down in every child.Context API helps us to pass this data easily and directly from source to destination.
+
+
+Another advantage of Context API is that suppose that we have to pass data from parent to all childs so now what we can do,We can simply pass the data to all of childs very easily using Context API.
+
+In code i have use very simple examples where i use Context API in best way......
+
+
+
+
+
+APP.JSX CODE IS HERE BELOW:
+
+
+import React, { useState } from "react";
+import College from "./topics/Context API Reactjs/College";
+import { SubjectContext } from "./ContextComponent";
+
+function App() {
+  const [data, setData] = useState("");
+  return (
+    <div style={{ backgroundColor: "orange", padding: "10px" }}>
+      <select
+        value={data}
+        onChange={(e) => setData(e.target.value)}
+        name=""
+        id=""
+      >
+        <option value="">Select Subject</option>
+        <option value="Physics">Physics</option>
+        <option value="English">English</option>
+        <option value="Math">Math</option>
+      </select>
+      <button onClick={() => setData("")}>Clear Subject</button>
+      <SubjectContext.Provider value={data}>
+        <h1>Context API</h1>
+        <College />
+      </SubjectContext.Provider>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,75 @@
+What is meant by Pure Component and Impure Component?
+
+
+-------Pure Component-----
+
+Pure Component is a smart component which do not re render unless it needs to.It only re render when there is solid reason of re render like changing state or passing or updating props.OtherWise it do not re render.
+Now here you will think that why unless re render is a issue here.The point is that we never want to re render our component unless we need it.Re render can may occur so many issues also.
+Now the question is that how a component can be called as a impure component and Pure component .See if we use a variable or anything outside of that component and then we use that variable for different purposes in our code then this will called impure component because it will re render our component very weirdly and unless we want.
+
+Here is a impure component example:
+
+
+import React from 'react'
+
+
+
+let count=0
+function App() {
+  return (
+    <div>
+     <Count/>
+     <Count/>
+     <Count/>
+     <Count/>
+    </div>
+  )
+}
+
+function Count() {
+  count=count+1
+  return(
+    <div>
+       <h1>Count Value: {count}</h1>
+    </div>
+   
+  )
+    
+}
+
+export default App
+
+
+
+OutPut:
+Count Value: 2
+Count Value: 4
+Count Value: 6
+Count Value: 8
+
+
+
+See here we use a outer variable and use it in our count.We simply do that everytime the Count component is called then count value should be + 1 but here we see that value is increasing by 2.This is because of unless re render of our component.This unless re render cause this issue so that we are not getting the exact output.This is a pure example of impure component.
+
+
+Here is a simple example of this functionaloty using pure component:
+
+
+import React, { useEffect, useState } from "react";
+
+function Pure() {
+  const [state, setState] = useState(0);
+
+  return (
+    <div>
+      <button onClick={()=>setState(state+1)}>Click</button>
+      <h1>{state}</h1>
+    </div>
+  );
+}
+
+export default Pure;
+
+
+
+here we are not using any outer variable instead we use usestate so now we have  fully control over our component and know that when we click the button then only it will render. 

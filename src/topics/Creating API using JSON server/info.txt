@@ -1,0 +1,27 @@
+import React from "react";
+import UserList from "./topics/Creating API using JSON server/UserList";
+import { NavLink, Route, Routes } from "react-router";
+import AddUser from "./topics/Creating API using JSON server/AddUser";
+import EditUser from "./topics/Creating API using JSON server/EditUser";
+
+function App() {
+  return (
+    <div>
+      <ul style={{display:'flex',gap:'80px'}}>
+        <li>
+          <NavLink to={'/'}>User List</NavLink>
+        </li>
+        <li>
+          <NavLink to={'/add'}>Add User</NavLink>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/add" element={<AddUser />} />
+        <Route path="/edit/:id" element={<EditUser />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,20 @@
+import React, { useState } from 'react'
+import Clock from './topics/Clock Props Practice Task/Clock'
+
+function App() {
+
+  let [color,setColor]=useState('green')
+  return (
+    <div>
+      <select onChange={(e)=>setColor(e.target.value)}>
+        <option value="blue">Blue</option>
+        <option value="yellow">Yellow</option>
+        <option value="purple">Purple</option>
+      </select>
+      <Clock color={color}/>
+    
+    </div>
+  )
+}
+
+export default App

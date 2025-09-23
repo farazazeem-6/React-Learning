@@ -1,0 +1,182 @@
+1. What is useref() hook in react:
+
+--useRef is a React Hook that lets you store a value or directly access a DOM element without causing re-renders.
+
+--Think of it like a “special container” that React gives you, where you can put a value and React won’t forget it, even when your component re-renders.
+
+
+2. Why Do We Use useRef?
+
+There are two main reasons:
+
+                        REASON 1: Access DOM elements directly:
+
+Normally in React, we don't directly touch the HTML elements like in plain JS (document.querySelector).
+But sometimes, you need to control an element directly, for example:
+
+Focus on an input field.
+Scroll to a specific section.
+Play/pause a video.
+
+useRef gives you a way to do this the React way.
+
+
+
+
+
+
+
+
+
+                         REASON 2: Store data that does NOT trigger re-renders
+
+Sometimes you need to keep a value between renders, but you don’t want changing that value to re-render the component.
+
+Example:
+
+Tracking how many times a button was clicked.
+
+Storing previous values.
+
+Keeping timers or interval IDs.
+
+If you use useState for this, the component will re-render every time the value changes, which can hurt performance.
+But with useRef, the value stays updated silently, without re-rendering.
+
+
+
+
+
+
+
+
+                              3. Simple Example – Focusing on an Input Field
+❌ Without useRef (Plain JS way – not recommended)
+function App() {
+  function focusInput() {
+    document.getElementById('myInput').focus();
+  }
+
+  return (
+    <div>
+      <input id="myInput" type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+}
+
+
+This works, but it's not good React practice because we are directly manipulating the DOM.
+
+✅ With useRef (React way)
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef(null); // Step 1: Create a ref
+
+  function focusInput() {
+    inputRef.current.focus(); // Step 3: Access the input element
+  }
+
+  return (
+    <div>
+      {/* Step 2: Attach the ref to the input */}
+      <input ref={inputRef} type="text" placeholder="Type here..." />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+}
+
+export default App;
+
+How this works:
+
+useRef(null) creates a reference and stores it in inputRef.
+The <input> is connected to inputRef using ref={inputRef}.
+When we call inputRef.current.focus(), it focuses the input.
+
+
+
+
+
+
+
+
+
+                        4. Storing a Value Without Causing Re-renders
+❌ Problem with useState
+
+If we use useState, the component will re-render every time the value changes:
+
+function App() {
+  const [count, setCount] = React.useState(0);
+
+  function increase() {
+    setCount(count + 1); // causes re-render each time
+  }
+
+  console.log("Component re-rendered!");
+
+  return <button onClick={increase}>Clicked {count} times</button>;
+}
+
+✅ Solution with useRef
+
+If you don’t want re-renders, use useRef:
+
+import { useRef } from "react";
+
+function App() {
+  const countRef = useRef(0); // Step 1: Create a ref
+
+  function increase() {
+    countRef.current = countRef.current + 1; // Update value silently
+    console.log("Clicked:", countRef.current);
+  }
+
+  console.log("Component rendered once only!");
+
+  return <button onClick={increase}>Click Me</button>;
+}
+
+export default App; 
+
+What happens here:
+
+The button text does not update automatically, but countRef.current is storing the latest value internally.
+Component does NOT re-render when countRef.current changes.
+This is perfect for storing values like timers, API cache, or previous state.
+
+
+
+
+
+
+
+WHAT IS MEANT BY FORWARD REF:
+
+forward ref mean passing the reference of any dom element from one component to another component.This is called forward ref.Sometime we have useref() in one component and its accessed DOM element in another element so here we can pass the reference from the parent to that child where the element is.This is called forward ref.
+
+
+App.jsx code of forward ref:
+
+import React, { useRef } from "react";
+import Comp from "./topics/useRef Hook in React/ForwardRef";
+
+function App() {
+  const userInputRef = useRef(null);
+
+  const userInput = () => {
+    userInputRef.current.value = 1000;
+    userInputRef.current.focus()
+  };
+  return (
+    <div>
+      <Comp ref={userInputRef} />
+      <br /> <br />
+      <button onClick={userInput}>Click Me</button>
+    </div>
+  );
+}
+
+export default App;

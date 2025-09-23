@@ -1,0 +1,31 @@
+WHAT IS LAZY LOADING:
+
+In React we have so many components.Some components contain too much complex ,long and time taking logic.These components effect the performance of our app's loading time.Because they have large data so they take more time to load and then render.This problem in react is normal.Maybe sometime we have components that we not have to show on normal screen or start sceen instead we have to show them on some button clicked or some other thing.For example we have a login signup modal and we have to show it only when the user click the login or signup button .So here normally when our react app will load and render on UI then it will also reload (not render) that modal component.So as we just need to show it when the user click the button for login or signup so why would we reload this modal component in our react app.Maybe the user just want to visit our site and dont't want to login or signup .But as our login modal component is also loaded in react app so our whole app will take more time to realod on browser of user.This is just simple edge case,maybe there are 20 components that are not need to realod in app on start and they just have some work on clicking some button or other ,then why we should also realod them in start and make our react performance slow.Another edge case is that for example we have to show some components on the UI and in these some components are too much time taking.So when we relaod our react app then it will not reload until all the components are relaoded.Here what is the fault of other components that don't take much time to reload as now they also will wait until the time taking components also relaod . This is a problem in React and this thing made the user experience bad.
+
+So here the a React feature called 'Lazy loading comes into picture'.This feature solve these all problems.In this we can do synchronously components reload and re render.For example if 1st component don't take much time and the 2nd component take more time then we can render the first component first like first start showing on Ui and the second is still reloading.This thing make user experience good.Now suppose we know that this this particular components take too much time and this this components take less time so we can show the less time components as they complete their realod.Now we don't care about the time taking components realod time because as we are start showing the components that don't take much time.
+
+
+HOW THIS REACT LAZY LOADING FEATURE WORKS:
+
+In this feature if we want that this etc component should only relaod in our react app if we click etc button then using Lazy loading feature will not relaod that component in our react app until we click that button.Another example is that if we want that the less time taking component that take less time will show on the UI no matter the other time taking components are realod or not.
+For example:
+
+1: The first thing to do using react Lazy loading feature is that we will not import that component as normally we import 
+
+Normal import:
+
+import etc from '.etc'
+
+In lazy loading:
+
+const etcVariableName=lazy(()=>import('./etcComponent'))
+
+
+
+2: The second thing is that we wrap that component in <Suspense></Suspense> wrapper. 
+like: <Suspense> <User/> </Suspense>
+
+
+3: Third thing is that we can also pass a fallback thing that we want to show in place of that component until the component is realod and render on UI.
+
+like: <Suspense fallback={<div>Component is Loading.....</div>}> <User/> </Suspense>

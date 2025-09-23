@@ -1,0 +1,6 @@
+useTransition Hook in React Js:
+
+If we want to show any animation or transion on clicking on a button or anything then we can use use transion hook.Here the question is that useFormStatus hook was also doing the same thing but here the diffierence is that the useFormStatus hook only works for forms like its necassarily need a form to work but useTransition hook can work on anything even a single button.As we have seen in modern websites ,there are some buttons or like filtering the list etc and here until we see the result the button is disabled or there is a loader or skelton transition.This functionality can be done by using useTransition hook.Like we click on a button which do something and we want that until that work is done,we want to show a loader etc then here we can use the useTransition hook.
+
+
+In the code of this topic you can see that how this hook work's.

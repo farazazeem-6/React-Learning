@@ -1,0 +1,18 @@
+import React from "react";
+import Parent from "./topics/Pass Function in Component as Props/Parent";
+
+function App() {
+  function displayName(name) {
+    alert(`Display User Name Function ${name}`);
+  }
+  function displayUser() {
+    alert("Display User Function");
+  }
+  return (
+    <div style={{ display: "flex", gap: "20px" }}>
+      <Parent displayName={displayName} displayUser={displayUser} name={'Faraz DON'}/>
+    </div>
+  );
+}
+
+export default App;

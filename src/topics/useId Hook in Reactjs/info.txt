@@ -1,0 +1,6 @@
+UseId() hook:
+
+UseId() hook is use to generate a unique id .For example we loop over a list and you know that it gaves a suggestion error that every list should have a unique id so here we can use the UseId hook to generate a unique id.But always remember that using UseId hook in the list error is not recommneded in the documentation of React.
+
+There are also many other things where we can use the UseId hook where we want to get a unique id.
+For example we have a form and we have to connect the label with his related input so here we can use UseId to get a unique id . So now if we want to use that form multiple time then the UseId will generate a unique id always.In the code i have made a form and explain this point.
