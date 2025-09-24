@@ -111,3 +111,30 @@ export default App;
 
 
 
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+
+
+import React, { useState } from "react";
+import Comp from "./topics/Color Mixer Project/Comp";
+import Timer from "./topics/use of useEffect hook/Timer";
+
+function App() {
+  const [showTimer, setShowTimer] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setShowTimer(!showTimer)}>
+        {showTimer ? "Unmount Timer" : "Mount Timer"}
+      </button>
+      <hr />
+
+      {showTimer && <Timer />}
+    </div>
+  );
+}
+
+export default App;
