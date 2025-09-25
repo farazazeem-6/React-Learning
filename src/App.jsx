@@ -1,12 +1,12 @@
-import React from 'react'
-import StopWatch from './topics/useRef Hook in React/StopWatch'
+import React from "react";
+import Comp from "./topics/useMemo hook in react/Comp";
 
 function App() {
   return (
     <div>
-      <StopWatch/>
+      <Comp />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

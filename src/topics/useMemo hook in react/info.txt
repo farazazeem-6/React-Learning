@@ -1,0 +1,11 @@
+useMemo() hook in react:
+
+In react sometime we have some expensive functions or task that can slow down react app performance.What is meant by expensive functions or tasks? The functions that take too much time or too much time are called expensive tasks. For example we have a function in which we run a for loop which go through to 1 to 100,000,000 and then print the square of a number.So now we all know that this function will take too much time to run.Suppose that here the parameter of that function that return square always same. 
+
+function func(num){
+    for loop...
+    return num*2
+}
+func(5)
+
+So here if we have any state type thing in this component then we all know that when the state is updated then the component re renders.So everytime when the component re renders, that expensive function will again run.Suppose we have a counter and we have this expensive function in our component so now whenever we update the counter,the component will re render and that expensive function will again run so the counter will take too much time to update as the expensive function is running everytime.What is the solution of this? You can ask that we can use useEffect() hook that control that which one function or task we will should run or re render.But here the scenario is different.We want that the resulf of that function should be saved once and that function cannot run again or re render.Here we can use useMemo() hook.Suppose that we have a function which return square so here we know that this etc function's output will always same so why we should run that function again.useMemo() works here very well.Here the useMemo() hook can run once that function and then it will save its return value and it will check that whether that function's output is changing or not.So it will only run the function one time.I know this theory will not understand you all concept that's why we can learn it from example of Comp component.
