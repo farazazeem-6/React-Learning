@@ -1,12 +1,12 @@
-import React from "react";
-import Comp from "./topics/useMemo hook in react/Comp";
+import React from 'react'
+import Parent from './useCallback hook in react/Parent'
 
 function App() {
   return (
     <div>
-      <Comp />
+      <Parent/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

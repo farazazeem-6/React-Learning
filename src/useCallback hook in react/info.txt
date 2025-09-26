@@ -1,0 +1,42 @@
+What is use callback () hook in react ?
+
+
+So if we need to pass a function as a prop to a children from parent component and we know that the parent component which is passing props ,will re render because there is some sort of functionality like use state or etc so now every time the re render happens,the reference of that function will changes that is passed.Because of its reference change,the child will also re render because of it is taking that function as prop. Here if we use React.memo then it can prevent this but only if the function is passed and this function's reference is changing on every render because of some reason.Here we can use the use callback hook that can solve this problem.If we wrap that function in the use callback hook and gave dependency array (as use effect() and useMemo(),it also have depenedency array) empty then the function reference will not change on any re render so as the reference is not changes so the child component will aslo not re render as before it was re rendering because of change in function reference that it takes as a prop from parent.
+In the depenedency array of use callback we can also gave conditions that on this value's change, re render this function (wrap in use callback).Like we have counter app and we ask that when when the count value is change then only  re render this function also so now the dependency array knows that when we have to re render this function and when not.
+
+
+
+
+If the child is wrapped in React.memo:
+
+const Child = React.memo(({ onClick }) => {
+  console.log("Child rendered!");
+  return <button onClick={onClick}>Click Me</button>;
+});
+
+
+Here’s what happens:
+
+React.memo will compare the previous props vs new props.
+Because the handleClick reference changes every render, React thinks:
+"Oh! The prop onClick changed → I must re-render the child."
+
+Result:
+The child always re-renders, even if its UI or behavior didn’t really change. ❌
+
+
+
+
+
+Simple Analogy
+
+Think of a function reference like a phone number:
+Without useCallback → you get a new phone number every time → your child keeps calling thinking it's a new person → unnecessary work.
+With useCallback → the phone number stays the same → no extra calls unless you explicitly change it.
+
+
+//Here another question is that why we are talking about React.memo or memo while learning use callback() hook.The reason is that if we dont use memo or React.memo in child then then the child will always re render no matter the reference of prop coming from parent changes or not.When we wrap a component in React.memo or memo then it checks that whether the props coming from anywhere in this child ,changes or not.If not changes then it stop the re render of that child as before the child was re rendering even the props changes or not.So now it will prevent that unnecessary re render of child that was because of no reason.So now if the props like a variable or anything expect function was coming in child then it helps to prevent the unnecessary re render but the problem comes when we start passing a function in props so now as the parent re render,its function's reference got change and this thing aslo re render the child where the function is getted through props.No doubt we are using memo but memo only prevent re render if the props are not changing but now the props are changing no matter it is just a reference changing.So here this useCallback hook helps alot that he stops to re render that function again so as the function is not re rendering again so its reference will not change and as the reference will not change then memo of child will see no change in props so it will protect the child component from unnecessary re render.....
+
+
+
+If you want more detail then i have archieve a chat in chatgpt on this topic.You can also read it out....................
